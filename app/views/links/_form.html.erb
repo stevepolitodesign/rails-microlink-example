@@ -16,6 +16,11 @@
     <%= form.url_field :url, data: { microlink_target: "input", action: "change->microlink#handleChange" } %>
   </div>
 
+  <%= form.hidden_field :description, data: { microlink_target: "descriptionInput" } %>
+  <%= form.hidden_field :image, data: { microlink_target: "imageInput" } %>
+  <%= form.hidden_field :title, data: { microlink_target: "titleInput" } %>
+
+
   <div class="actions">
     <%= form.submit %>
   </div>
