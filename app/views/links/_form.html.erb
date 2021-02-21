@@ -1,4 +1,4 @@
-<%= form_with(model: link) do |form| %>
+<%= form_with(model: link, data: { controller: "microlink" }) do |form| %>
   <% if link.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(link.errors.count, "error") %> prohibited this link from being saved:</h2>
@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= form.label :url %>
-    <%= form.text_field :url %>
+    <%= form.url_field :url, data: { microlink_target: "input", action: "change->microlink#handleChange" } %>
   </div>
 
   <div class="actions">
