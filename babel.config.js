@@ -16,6 +16,9 @@ module.exports = function(api) {
   }
 
   return {
+    // https://github.com/webpack/webpack/issues/4039
+    // https://babeljs.io/docs/en/options#sourcetype
+    sourceType: "unambiguous",
     presets: [
       isTestEnv && [
         '@babel/preset-env',
