@@ -5,5 +5,9 @@
   <%= @link.url %>
 </p>
 
+<%= link_to @link.url, target: "_blank" do %>
+  <%= render "preview" %>
+<% end %>
+
 <%= link_to 'Edit', edit_link_path(@link) %> |
 <%= link_to 'Back', links_path %>

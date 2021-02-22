@@ -1,0 +1,7 @@
+<div data-microlink-target="output" style="<%= @link.persisted? ? nil : 'display: none;' %>">
+    <img src="<%= @link.persisted? ? @link.image : nil %>"/>
+    <div>
+        <h5><%= @link.persisted? ? @link.title : nil %></h5>
+        <p><%= @link.persisted? ? @link.description : nil %></p>
+    </div>
+</div> 
