@@ -1,5 +1,5 @@
 <div data-microlink-target="output" style="<%= @link.persisted? ? nil : 'display: none;' %>">
-    <img src="<%= @link.persisted? ? @link.image : nil %>"/>
+    <img src="<%= @link.thumbnail.attached? ? url_for(@link.thumbnail) : nil %>"/>
     <div>
         <h5><%= @link.persisted? ? @link.title : nil %></h5>
         <p><%= @link.persisted? ? @link.description : nil %></p>
