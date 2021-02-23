@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import mql from "@microlink/mql"
 
 export default class extends Controller {
-    static targets = [ "input", "descriptionInput", "imageInput", "titleInput", "output" ]
+    static targets = [ "input", "descriptionInput", "imageInput", "titleInput", "output", "message" ]
 
     connect() {
         this.previewDescription = this.outputTarget.querySelector("p");
@@ -12,9 +12,11 @@ export default class extends Controller {
 
     async handleChange() {
         const { status, data } = await mql(this.inputTarget.value)
+        this.messageTarget.innerText = "Fetching link preview...";
         if(status == "success") {
             this.setFormData(data);
             this.renderPreview(data);
+            this.messageTarget.innerText = null;
         }
     }
 

@@ -14,6 +14,7 @@
   <div class="field">
     <%= form.label :url %>
     <%= form.url_field :url, data: { microlink_target: "input", action: "change->microlink#handleChange" } %>
+    <span data-microlink-target="message"></span>
   </div>
 
   <%= form.hidden_field :description, data: { microlink_target: "descriptionInput" } %>
