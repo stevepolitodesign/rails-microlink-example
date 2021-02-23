@@ -25,6 +25,7 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
+        MicrolinkImageAttacherJob.perform_now(@link)
         format.html { redirect_to @link, notice: "Link was successfully created." }
         format.json { render :show, status: :created, location: @link }
       else
