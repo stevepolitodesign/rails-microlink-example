@@ -11,13 +11,34 @@ export default class extends Controller {
     }
 
     async handleChange() {
-        const { status, data } = await mql(this.inputTarget.value)
-        this.messageTarget.innerText = "Fetching link preview...";
-        if(status == "success") {
-            this.setFormData(data);
-            this.renderPreview(data);
-            this.messageTarget.innerText = null;
+        this.clearFormData();
+        this.clearPreview();
+        try {
+            const { status, data } = await mql(this.inputTarget.value)
+            this.messageTarget.innerText = "Fetching link preview...";
+            if(status == "success") {
+                this.setFormData(data);
+                this.renderPreview(data);
+                this.messageTarget.innerText = null;
+            } else {
+                this.messageTarget.innerText = "There was an error fetching the link preview.";
+            }
+        } catch(e) {
+            this.messageTarget.innerText = e;
         }
+    }
+
+    clearFormData() {
+        this.descriptionInputTarget.value   = null;
+        this.imageInputTarget.value         = null;
+        this.titleInputTarget.value         = null;
+    }
+
+    clearPreview() {
+        this.previewDescription.innerHTML   = null;
+        this.previewImage.setAttribute("src", "");
+        this.previewTitle.innerHTML         = null;
+        this.outputTarget.style.display     = "none";
     }
 
     renderPreview(data) {
