@@ -2,6 +2,7 @@ require "down"
 
 class MicrolinkImageAttacherJob < ApplicationJob
   queue_as :default
+  discard_on Down::InvalidUrl
 
   def perform(link)
     if link.image.present?
