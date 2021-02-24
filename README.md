@@ -1,6 +1,6 @@
 # Create link previews in Rails with Microlink 
 
-![public/demo.gif](Demo)
+![Demo](public/demo.gif)
 
 ## Step 1: Application Set Up
 
@@ -67,7 +67,7 @@ end
 1. `yarn add @microlink/mql`
 2. `touch app/javascript/controllers/microlink_controller.js`
 
-```js
+```javascript
 import { Controller } from "stimulus"
 import mql from "@microlink/mql"
 
@@ -77,11 +77,11 @@ export default class extends Controller {
 
 > If you were you run `rails s` and view the console, you would see the following error:
 
-![public/exports-error.png](Uncaught TypeError)
+![Uncaught TypeError](public/exports-error.png)
 
 3. Update `babel.config.js` by adding `sourceType: "unambiguous"`.
 
-```js{4}
+```javascript{4}
 module.exports = function(api) {
   ...  
   return {
@@ -119,7 +119,7 @@ module.exports = function(api) {
 
 2. Build `handleChange` method in `app/javascript/controllers/microlink_controller.js`.
 
-```js{5-18}
+```javascript{5-18}
 import { Controller } from "stimulus"
 import mql from "@microlink/mql"
 
@@ -143,7 +143,7 @@ export default class extends Controller {
 
 > Now when a user enters a URL, the hidden fields will be set with the response from the Microlink API.
 
-![public/hidden-fields.png](Hidden fields will be set with the response from the Microlink API)
+![Hidden fields will be set with the response from the Microlink API](public/hidden-fields.png)
 
 ## Step 6: Render Link Preview
 
@@ -188,7 +188,7 @@ export default class extends Controller {
 
 4. Build the `renderPreview` method in `app/javascript/controllers/microlink_controller.js`.
 
-```js{1,7-11,17,21-26}
+```javascript{1,7-11,17,21-26}
 import { Controller } from "stimulus"
 import mql from "@microlink/mql"
 
@@ -226,7 +226,7 @@ export default class extends Controller {
 
 > At this point you should be able to render a link preview.
 
-![public/rendering-preview.gif](Rendering a link preview).
+![Rendering a link preview](public/rendering-preview.gif).
 
 ## Step 7: Attaching the Preview Image to the Link
 
@@ -322,7 +322,7 @@ Now that we have our happy path complete, we should improve the UX to account fo
 
 2. Update `app/javascript/controllers/microlink_controller.js` to handle errors and render messages.
 
-```js{5,13-22,34-38,40-45}
+```javascript{5,13-22,34-38,40-45}
 import { Controller } from "stimulus"
 import mql from "@microlink/mql"
 
@@ -384,4 +384,4 @@ export default class extends Controller {
 }
 ```
 
-![public/handle-errors.gif](handling errors.)
+![handling errors.](public/handle-errors.gif)
