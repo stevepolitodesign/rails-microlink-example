@@ -13,7 +13,7 @@
 1. `rails g scaffold link url:string`
 2. Prevent null values at the database level.
 
-```ruby{4}
+```ruby
 class CreateLinks < ActiveRecord::Migration[6.1]
   def change
     create_table :links do |t|
@@ -28,7 +28,7 @@ end
 3. `rails db:migrate`
 4. Add validations.
 
-```ruby{2}
+```ruby
 class Link < ApplicationRecord
     validates :url, presence: true
 end
@@ -40,7 +40,7 @@ end
 2. `rails db:migrate`
 3. Use [ActiveRecord::Store](https://api.rubyonrails.org/classes/ActiveRecord/Store.html) to serialize data saved to the `meta_data` column. We can call these accessors anything we want to, but we'll use the sames names that at returned from the [Microlink response](https://microlink.io/docs/api/getting-started/overview)
 
-```ruby{2}
+```ruby
 class Link < ApplicationRecord
     store :meta_data, accessors: [ :description, :image, :title  ], coder: JSON
     validates :url, presence: true
@@ -51,7 +51,7 @@ end
 
 4. Update `link_params` to include values from the `meta_data` column.
 
-```ruby{6}
+```ruby
 class LinksController < ApplicationController
  ...
  private
@@ -81,7 +81,7 @@ export default class extends Controller {
 
 3. Update `babel.config.js` by adding `sourceType: "unambiguous"`.
 
-```javascript{4}
+```javascript
 module.exports = function(api) {
   ...  
   return {
@@ -102,7 +102,7 @@ module.exports = function(api) {
 
 1. Update the markup in `app/views/links/_form.html.erb`.
 
-```erb{1,5,8-10}
+```erb
 <%= form_with(model: link, data: { controller: "microlink" }) do |form| %>
   ...
   <div class="field">
@@ -119,7 +119,7 @@ module.exports = function(api) {
 
 2. Build `handleChange` method in `app/javascript/controllers/microlink_controller.js`.
 
-```javascript{5-18}
+```javascript
 import { Controller } from "stimulus"
 import mql from "@microlink/mql"
 
@@ -161,7 +161,7 @@ export default class extends Controller {
 
 2. Add the partial to `app/views/links/_form.html.erb`.
 
-```erb{3}
+```erb
 <%= form_with(model: link, data: { controller: "microlink" }) do |form| %>
   ...
   <%= render "preview" %>  
@@ -170,7 +170,7 @@ export default class extends Controller {
 
 3. Add the partial to `app/views/links/show.html.erb `.
 
-```erb{8-10}
+```erb
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -188,7 +188,7 @@ export default class extends Controller {
 
 4. Build the `renderPreview` method in `app/javascript/controllers/microlink_controller.js`.
 
-```javascript{1,7-11,17,21-26}
+```javascript
 import { Controller } from "stimulus"
 import mql from "@microlink/mql"
 
@@ -235,7 +235,7 @@ Right now we're not actually attaching the image to the `Link` but rather we're 
 1. Run `rails active_storage:install` and `rails db:migrate` to install **Active Storage**.
 2. Add `has_one_attached :thumbnail` to Link Model.
 
-```ruby{4}
+```ruby
 class Link < ApplicationRecord
     store :meta_data, accessors: [ :description, :image, :title  ], coder: JSON
     validates :url, presence: true
@@ -289,7 +289,7 @@ end
 
 6. Render attached thumbnail in `app/views/links/_preview.html.erb`.
 
-```erb{2}
+```erb
 <div data-microlink-target="output" style="<%= @link.persisted? ? nil : 'display: none;' %>">
     <img src="<%= @link.thumbnail.attached? ? url_for(@link.thumbnail) : nil %>"/>
     <div>
@@ -307,7 +307,7 @@ Now that we have our happy path complete, we should improve the UX to account fo
 
 1. Add markup for rendering a message to `app/views/links/_form.html.erb `.
 
-```erb{6}
+```erb
 <%= form_with(model: link, data: { controller: "microlink" }) do |form| %>
   ...
   <div class="field">
@@ -322,7 +322,7 @@ Now that we have our happy path complete, we should improve the UX to account fo
 
 2. Update `app/javascript/controllers/microlink_controller.js` to handle errors and render messages.
 
-```javascript{5,13-22,34-38,40-45}
+```javascript
 import { Controller } from "stimulus"
 import mql from "@microlink/mql"
 
